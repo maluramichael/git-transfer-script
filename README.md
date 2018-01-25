@@ -1,8 +1,10 @@
 git-transfer-script
 ===================
 
-# Prequesites
-You need git and hub installed
+# Prerequisites
+You need git and hub
+
+https://hub.github.com/
 
 # Getting started
 ```sh
