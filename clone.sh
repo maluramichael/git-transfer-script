@@ -7,6 +7,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
   repo=${line##*/}
   echo "---------------------------------- CLONE REPO"
   git clone "git@github.com:$line.git $line"
+  git clone "git@github.com:$line.git" $line
   cd $line
 
   echo "---------------------------------- FETCH"
