@@ -1,12 +1,12 @@
 #!/bin/sh
 
-fromUser=""
 destinationUser=""
 repoList="repos.txt"
 
 while IFS='' read -r line || [[ -n "$line" ]]; do
+  repo=${line##*/}
   echo "---------------------------------- CLONE REPO"
-  git clone "git@github.com:$fromUser/$line.git"
+  git clone "git@github.com:$line.git $line"
   cd $line
 
   echo "---------------------------------- FETCH"
@@ -19,10 +19,10 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
   git pull --all
 
   echo "---------------------------------- CREATE REPO ON GITHUB"
-  hub create -p $destinationUser/$line
+  hub create -p $destinationUser/$repo
 
   echo "---------------------------------- SET REMOTE"
-  git remote set-url origin git@github.com:$destinationUser/$line.git
+  git remote set-url origin git@github.com:$destinationUser/$repo.git
 
   echo "---------------------------------- PUSH"
   git push --all
