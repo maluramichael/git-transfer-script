@@ -2,18 +2,16 @@ git-transfer-script
 ===================
 
 # Prerequisites
-You need git and hub
+You need git, hub and jq
 
 https://hub.github.com/
+https://stedolan.github.io/jq/
 
 # Getting started
 ```sh
-brew install hub
+brew install hub jq
 git clone git@github.com:maluramichael/git-transfer-script.git
 cd git-transfer-script
-touch repos.txt
-# here add a list of all the repositories you want to clone
-# full names (with username)
-# edit the clone.sh
+# edit the clone.sh (the three variables at the top)
 ./clone.sh
 ```
