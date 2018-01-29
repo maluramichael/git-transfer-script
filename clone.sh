@@ -2,8 +2,8 @@
 
 destinationUser="" # user to create repo for
 token="" # token with repo permissions
-filters="" # grep -E regex filter, "." for everything
-entityType="" # o for organisation, u for user
+filters="." # grep -E regex filter, "." for everything
+entityType="o" # o for organisation, u for user
 entity="" # organisation name or usename
 
 getRepos() {
@@ -40,6 +40,7 @@ repos=$(getRepos $entityType $entity)
 for line in $repos; do
   repo=${line##*/}
   echo "---------------------------------- CLONE REPO"
+  rm -rf $line
   git clone "git@github.com:$line.git" $line
   cd $line
 
@@ -47,7 +48,11 @@ for line in $repos; do
   git fetch --all
 
   echo "---------------------------------- TRACK"
-  for remote in `git branch -r | awk '{print $1}'`; do git branch --track $remote; done
+  prefix="origin/"
+  for remote in `git branch -r | awk '{print $1}' | grep -vv HEAD | grep $prefix`; do
+    branch=${remote#$prefix}
+    git branch --track $branch
+  done
 
   echo "---------------------------------- PULL"
   git pull --all
@@ -60,4 +65,6 @@ for line in $repos; do
 
   echo "---------------------------------- PUSH"
   git push --all
+  cd ../..
+
 done
