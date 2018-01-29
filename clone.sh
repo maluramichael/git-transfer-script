@@ -6,6 +6,26 @@ filters="." # grep -E regex filter, "." for everything
 entityType="o" # o for organisation, u for user
 entity="" # organisation name or usename
 
+if [ "$destinationUser" == "" ]; then
+  echo "destinationUser not set" 1>&2
+  exit 128
+fi
+
+if [ "$token" == "" ]; then
+  echo "token not set" 1>&2
+  exit 128
+fi
+
+if [ "$filters" == "" ]; then
+  echo "filters not set" 1>&2
+  exit 128
+fi
+
+if [ "$entity" == "" ]; then
+  echo "entity not set" 1>&2
+  exit 128
+fi
+
 getRepos() {
   if [ "$1" = "o" ]
     then type="orgs"
