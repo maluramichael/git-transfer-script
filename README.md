@@ -5,6 +5,7 @@ git-transfer-script
 You need git, hub and jq
 
 https://hub.github.com/
+
 https://stedolan.github.io/jq/
 
 # Getting started
