@@ -5,6 +5,7 @@ git-transfer-script
 You need git, hub and jq
 
 https://hub.github.com/
+
 https://stedolan.github.io/jq/
 
 # Getting started
@@ -12,6 +13,6 @@ https://stedolan.github.io/jq/
 brew install hub jq
 git clone git@github.com:maluramichael/git-transfer-script.git
 cd git-transfer-script
-# edit the clone.sh (the three variables at the top)
+# edit the clone.sh (the five variables at the top)
 ./clone.sh
 ```
